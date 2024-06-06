@@ -1,78 +1,39 @@
-# Shopify App Template - None (app with extensions only)
+# Checkout UI Extension
 
-This is a template for building a [Shopify app](https://shopify.dev/docs/apps/getting-started) that includes no app home UI. It contains the basics for building a Shopify app that uses only app extensions.
+Checkout UI extensions let app developers build custom functionality that merchants can install at defined targets in the checkout flow. You can learn more about checkout UI extensions in Shopify’s [developer documentation](https://shopify.dev/api/checkout-extensions/checkout).
 
-**If you plan for your app to load its own page in the Shopify Admin, then you'll want to choose one of our other templates.**
+## Prerequisites
 
-Whether you choose to use this template or another one, you can use your preferred package manager and the Shopify CLI with [these steps](#installing-the-template).
+Before you start building your extension, make sure that you’ve created a [development store](https://shopify.dev/docs/apps/tools/development-stores) with the [checkout extensibility developer preview](https://shopify.dev/docs/api/release-notes/developer-previews#previewing-new-features).
 
-## Benefits
+## Your new Extension
 
-Shopify apps are built on a variety of Shopify tools to create a great merchant experience. The [create an app](https://shopify.dev/docs/apps/getting-started/create) tutorial in our developer documentation will guide you through creating a Shopify app.
+Your new extension contains the following files:
 
-This app template does little more than install the CLI and scaffold a respository.
+- `README.md`, the file you are reading right now.
+- `shopify.extension.toml`, the configuration file for your extension. This file defines your extension’s name, where it will appear in the checkout, and other metadata.
+- `src/Checkout.jsx`, the source code for your extension.
+- `locales/en.default.json` and `locales/fr.json`, which contain translations used to [localized your extension](https://shopify.dev/docs/apps/checkout/best-practices/localizing-ui-extensions).
 
-## Getting started
+By default, your extension is configured to target the `purchase.checkout.block.render` [extension target](https://shopify.dev/docs/api/checkout-ui-extensions/extension-targets-overview). You will find the target both in your `shopify.extension.toml`, and in the source code of your extension. The default target allows the merchant to configure where in the checkout *they* want your extension to appear. If you are building an extension that is tied to existing UI element in the checkout, such as the cart lines or shipping options, you can change the extension target so that your UI extension will render in the correct location. Check out the list of [all available extension targets](https://shopify.dev/docs/api/checkout-ui-extensions/extension-targets-overview) to get some inspiration for the kinds of content you can provide with checkout UI extensions.
 
-### Requirements
+To build your extension, you will need to use APIs provided by Shopify that let you render content, and to read and write data in the checkout. The following resources will help you get started with checkout extensions:
 
-1. You must [download and install Node.js](https://nodejs.org/en/download/) if you don't already have it.
-1. You must [create a Shopify partner account](https://partners.shopify.com/signup) if you don’t have one.
-1. You must create a store for testing if you don't have one, either a [development store](https://help.shopify.com/en/partners/dashboard/development-stores#create-a-development-store) or a [Shopify Plus sandbox store](https://help.shopify.com/en/partners/dashboard/managing-stores/plus-sandbox-store).
+- [Available components and their properties](https://shopify.dev/docs/api/checkout-ui-extensions/unstable/components)
+- APIs for [reading](https://shopify.dev/docs/api/checkout-ui-extensions/unstable/apis/standardapi) and [writing checkout data](https://shopify.dev/docs/api/checkout-ui-extensions/unstable/apis/checkoutapi)
+- [APIs by extension target](https://shopify.dev/docs/api/checkout-ui-extensions/unstable/apis/extensiontargets)
 
-### Installing the template
+## Useful Links
 
-This template can be installed using your preferred package manager:
-
-Using yarn:
-
-```shell
-yarn create @shopify/app
-```
-
-Using npm:
-
-```shell
-npm init @shopify/app@latest
-```
-
-Using pnpm:
-
-```shell
-pnpm create @shopify/app@latest
-```
-
-This will clone the template and install the required dependencies.
-
-#### Local Development
-
-[The Shopify CLI](https://shopify.dev/docs/apps/tools/cli) connects to an app in your Partners dashboard. It provides environment variables and runs commands in parallel..
-
-You can develop locally using your preferred package manager. Run one of the following commands from the root of your app.
-
-Using yarn:
-
-```shell
-yarn dev
-```
-
-Using npm:
-
-```shell
-npm run dev
-```
-
-Using pnpm:
-
-```shell
-pnpm run dev
-```
-
-Open the URL generated in your console. Once you grant permission to the app, you can start development (such as generating extensions).
-
-## Developer resources
-
-- [Introduction to Shopify apps](https://shopify.dev/docs/apps/getting-started)
-- [App authentication](https://shopify.dev/docs/apps/auth)
-- [Shopify CLI](https://shopify.dev/docs/apps/tools/cli)
-- [Shopify API Library documentation](https://github.com/Shopify/shopify-api-js#readme)
+- [Checkout app documentation](https://shopify.dev/apps/checkout)
+- [Checkout UI extension documentation](https://shopify.dev/api/checkout-extensions)
+  - [Configuration](https://shopify.dev/docs/api/checkout-ui-extensions/configuration)
+  - [API Reference](https://shopify.dev/docs/api/checkout-ui-extensions/apis)
+  - [UI Components](https://shopify.dev/docs/api/checkout-ui-extensions/components)
+  - [Available React Hooks](https://shopify.dev/docs/api/checkout-ui-extensions/react-hooks)
+- [Checkout UI extension tutorials](https://shopify.dev/docs/apps/checkout)
+  - [Enable extended delivery instructions](https://shopify.dev/apps/checkout/delivery-instructions)
+  - [Creating a custom banner](https://shopify.dev/apps/checkout/custom-banners)
+  - [Thank you and order status pages](https://shopify.dev/docs/apps/checkout/thank-you-order-status)
+  - [Adding field validation](https://shopify.dev/apps/checkout/validation)
+  - [Localizing an extension](https://shopify.dev/apps/checkout/localize-ui-extensions)
